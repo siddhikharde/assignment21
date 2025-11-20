@@ -1,0 +1,95 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+    font-family: Arial, Helvetica, sans-serif;
+}
+.main-input-con{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 50px auto;
+    border: solid 1px gray;
+    width: 300px;
+    padding:20px 10px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px lightgray;
+
+}
+.inputCon{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    width: 100%;
+    gap: 10px; 
+}
+.input{
+    width: 100%;
+    padding: 10px 20px;
+   outline: none;
+    border: solid 1px gray;
+    border-radius: 5px;
+
+}
+.input :focus{
+    border: solid 1px blue;
+}
+.error{
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+  
+.btn{
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    background-color: blueviolet;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.btnDisable{
+    cursor: disabled;
+    background-color: gray;
+}
+.select-con{
+    width: 100%;
+   
+
+}
+.select-con select{
+    width: 100%;
+    padding: 10px 20px;
+    outline: none;
+    border: solid 1px gray;
+    border-radius: 5px;
+    margin: 10px 0px;
+}
+.radio-btn{
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px ;
+    width: 100%;
+}
+.showData{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+.name{
+    color: green;
+    font-size: 24px;
+}
