@@ -51,11 +51,13 @@
     background-color: blueviolet;
     color: white;
     cursor: pointer;
+    text-decoration: none;
     border-radius: 5px;
 }
 .btnDisable{
     cursor: disabled;
     background-color: gray;
+    text-decoration: none;
 }
 .select-con{
     width: 100%;
@@ -78,18 +80,8 @@
     gap: 50px ;
     width: 100%;
 }
-.showData{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    margin-top: 50px;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 10px 20px;
-}
+
 .name{
     color: green;
-    font-size: 24px;
+    font-size: 34px;
 }

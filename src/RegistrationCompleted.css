@@ -1,0 +1,36 @@
+.registration-completed {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  font-family: Arial, sans-serif;
+  height: 90vh;
+}
+.registration-completed h1{
+    color: #4CAF50;
+    font-size: 50px;
+    text-align: center;
+}
+.registration-completed p{
+    font-size: 30px;
+    color: #555;
+    text-align: center;
+}
+.showData{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+.showData p{
+    margin: 0;
+    padding: 0;
+    font-size: 25px;
+}

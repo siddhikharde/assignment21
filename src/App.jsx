@@ -1,6 +1,7 @@
 import React, { use, useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast';
 import "./App.css"
+import { Link } from 'react-router'
 function FormHandling() {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
@@ -8,14 +9,16 @@ function FormHandling() {
   const [city, setCity] = useState("");
   const [gender, setGender] = useState("");
   const saveInfo = () => {
+   
+
     if (name.length > 2 && name.length < 20) {
       localStorage.setItem("name", name);
-    
+
     }
-   localStorage.setItem("age", age);
-   localStorage.setItem("city", city);
-   localStorage.setItem("gender", gender);
-  toast.success('Successfully Saved!');
+    localStorage.setItem("age", age);
+    localStorage.setItem("city", city);
+    localStorage.setItem("gender", gender);
+   
 
   }
   useEffect(() => {
@@ -28,8 +31,8 @@ function FormHandling() {
   }, [])
   useEffect(() => {
     if (name.length < 2) {
-      setError("Name should be grete than two charecters");
-   
+      setError("Name should be greter than two charecters");
+
     }
     else if (name.length > 20) {
       setError("name should be small");
@@ -53,7 +56,7 @@ function FormHandling() {
       setAge(storedAge);
     }
     else {
-      setAge("__");
+      setAge(" ");
     }
     const storedName = localStorage.getItem("name");
     if (storedName) {
@@ -63,17 +66,17 @@ function FormHandling() {
       setName("User");
     }
 
-  },[])
+  }, [])
   return (
-    
+
     <div>
       <div className='showData'>
-       <p className='name'>{`Hello! I am ${name} and I am ${age} years old. Belongs to ${city}`}</p>
-    </div>
+        <p className='name'>Registration Form</p>
+      </div>
       <div className='main-input-con'>
         <div>
           <div className='inputCon'>
-            <input type='text' className='input' placeholder='Enter Your Name' onChange={(e) => {
+            <input type='text' className='input' required placeholder='Enter Your Name' onChange={(e) => {
               setName(e.target.value)
 
             }}
@@ -81,47 +84,59 @@ function FormHandling() {
 
             />
             <p className={`error ${error ? "show" : ""}`}>{error}</p>
-            <input type='number' className='input' placeholder='Enter Your Age' onChange={(e) => {
+            <input type='number' required className='input' placeholder='Enter Your Age' onChange={(e) => {
               setAge(e.target.value)
 
             }}
               value={age}
-
             />
 
           </div>
-        <div className='select-con'>
-              <select value={city} onChange={(e) => {
+          <div className='select-con'>
+            <select value={city} onChange={(e) => {
               setCity(e.target.value)
             }} >
               <option value="Nagpur">Nagpur</option>
               <option value="pune">Pune</option>
+              <option value="mumbai">Mumbai</option>
+              <option value="banglore">Banglore</option>
+              <option value="chennai">Chennai</option>
+              <option value="delhi">Delhi</option>
+              <option value="hydrabad">Hydrabad</option>
             </select>
-        </div>
+          </div>
         </div>
 
         <div className='radio-btn'>
           <div><span>Male </span>
-          <input type="radio" name="gender" value="male" onChange={(e)=>{
-            if(e.target.checked){
-              setGender(e.target.value)
-            }
+            <input type="radio" name="gender" value="male" onChange={(e) => {
+              if (e.target.checked) {
+                setGender(e.target.value)
+              }
 
-          }}
-          checked={gender === "male"} /></div>
+            }}
+              checked={gender === "male"} /></div>
           <div>
             <span>
-            Female  </span>
-          <input type="radio" name="gender" value="Female" onChange={(e)=>{
-            if(e.target.checked){
-              setGender(e.target.value);
-            }
-          }} 
-          checked={gender === "Female"} />
+              Female  </span>
+            <input type="radio" name="gender" value="Female" onChange={(e) => {
+              if (e.target.checked) {
+                setGender(e.target.value);
+              }
+            }}
+              checked={gender === "Female"} />
           </div></div>
 
         <div className='btn-con'>
-          <button className={`btn ${name.length < 2 ? "btnDisable" : null}`} onClick={saveInfo}>Save</button>
+          <Link to={name.length > 2 && name !== "User" && age !== "" && city ? '/registrationCompleted' : '#'} className={`btn ${name.length < 2 ? "btnDisable" : null}`} onClick={()=>{
+            if(name.length > 2 && name !== "User" && age !== "" && city){
+              saveInfo();
+              toast.success('Registration Successful');
+            }
+            else{
+              toast.error("Please fill all the details")
+            }
+          }}>Register</Link>
           <button className='btn' onClick={() => {
             setName("")
             setAge("")
