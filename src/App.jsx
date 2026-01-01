@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast';
 import "./App.css"
 import { Link } from 'react-router'
@@ -8,6 +8,15 @@ function FormHandling() {
   const [error, setError] = useState("");
   const [city, setCity] = useState("");
   const [gender, setGender] = useState("");
+  const [optionalSubject, setOptionalSubject] = useState([]);
+  const handleOptionalChange = (subject) => {
+    setOptionalSubject((prev) => {
+      if (prev.includes(subject)) {
+        return prev.filter((s) => s !== subject);
+      }
+      return [...prev, subject];
+    });
+  };
   const saveInfo = () => {
    
 
@@ -15,6 +24,7 @@ function FormHandling() {
       localStorage.setItem("name", name);
 
     }
+    localStorage.setItem("optionalSubject",JSON.stringify(optionalSubject))
     localStorage.setItem("age", age);
     localStorage.setItem("city", city);
     localStorage.setItem("gender", gender);
@@ -64,6 +74,15 @@ function FormHandling() {
     }
     else {
       setName("User");
+    }
+    const storedOptional = localStorage.getItem("optionalSubject");
+    if (storedOptional) {
+      
+        setOptionalSubject(JSON.parse(storedOptional));
+    }
+    else {
+        setOptionalSubject([]);
+    
     }
 
   }, [])
@@ -125,7 +144,29 @@ function FormHandling() {
               }
             }}
               checked={gender === "Female"} />
-          </div></div>
+          </div>
+          </div>
+          <div className='checkBox'>
+            <p>Select optional Subject</p>
+           <div className="checkBox-input-con">
+             <label>
+               <input type="checkbox" value="Marathi" checked={optionalSubject.includes("Marathi")} onChange={() => handleOptionalChange("Marathi")} /> Marathi
+             </label>
+            <label>
+              <input type="checkbox" value="Hindi" checked={optionalSubject.includes("Hindi")} onChange={() => handleOptionalChange("Hindi")} /> Hindi
+            </label>
+            <label>
+              <input type="checkbox" value="Science" checked={optionalSubject.includes("Science")} onChange={() => handleOptionalChange("Science")} /> Science
+            </label>
+            <label>
+              <input type="checkbox" value="Maths" checked={optionalSubject.includes("Maths")} onChange={() => handleOptionalChange("Maths")} /> Maths
+            </label>
+            <label>
+              <input type="checkbox" value="History" checked={optionalSubject.includes("History")} onChange={() => handleOptionalChange("History")} /> History
+            </label>
+
+           </div>
+                      </div>
 
         <div className='btn-con'>
           <Link to={name.length > 2 && name !== "User" && age !== "" && city ? '/registrationCompleted' : '#'} className={`btn ${name.length < 2 ? "btnDisable" : null}`} onClick={()=>{
@@ -140,10 +181,12 @@ function FormHandling() {
           <button className='btn' onClick={() => {
             setName("")
             setAge("")
+            setOptionalSubject([])
             localStorage.setItem("name", "")
             localStorage.setItem("age", "")
             localStorage.setItem("city", "")
             localStorage.setItem("gender", "")
+            localStorage.setItem("optionalSubject", JSON.stringify([]))
           }}>Clear</button>
         </div>
       </div>
